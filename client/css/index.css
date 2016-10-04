@@ -1,0 +1,175 @@
+.container {
+    margin-top: 5%;
+}
+
+.sub-container {
+    position: relative;
+    margin-bottom: 40px;
+    height: 40px;
+}
+
+.label-div {
+    display: inline-block;
+    position: absolute;
+    text-align: right;
+    width: 24%;
+    padding: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    left: 15%;
+}
+
+label,
+button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26px;
+    color: blue;
+}
+
+.upload-file,
+.upload-string,
+select {
+    text-align: left;
+    display: block;
+    padding: 13px 10px;
+    width: 30%;
+    height: 100%;
+    position: absolute;
+    left: 40%;
+    background-color: aqua;
+    -webkit-transition: background-color 0.5s;
+    /* Safari */
+    transition: background-color 0.5s;
+    border: solid blue 2px;
+    border-radius: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26px;
+    color: blue;
+    box-sizing: border-box;
+}
+
+select {
+    font-size: 16px;
+    padding: 0 10px;
+}
+
+#upload-string {
+    display: none;
+}
+
+.upload-file:hover,
+button:hover,
+.upload-string:hover,
+select:hover {
+    background-color: GhostWhite;
+}
+
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #77F;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: blue;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: blue;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: blue;
+}
+
+.btn-container {
+    margin: 2% auto;
+    margin-left: 45%;
+}
+
+button {
+    height: 60px;
+    width: 200px;
+    background-color: DodgerBlue;
+    color: Blue;
+    border: solid blue 2px;
+    border-radius: 8px;
+    -webkit-transition: background-color 0.5s;
+    /* Safari */
+    transition: background-color 0.5s;
+}
+
+.heading,
+.description {
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
+}
+
+.heading {
+    font-size: 48px;
+    margin: 5% auto;
+    text-align: center;
+}
+
+.description {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.progress-label {
+    text-align: center;
+    line-height: 30px;
+    color: Navy;
+    font-weight: bold;
+}
+
+.progress-bar {
+    position: relative;
+    width: 50%;
+    margin: auto;
+    height: 30px;
+    background-color: white;
+    border: solid blue 3px;
+    border-radius: 4px;
+    display: none;
+}
+
+.progress-bar-box {
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    background-color: RoyalBlue;
+    transition: width 0.1s;
+    text-align: center;
+    line-height: 30px;
+    color: Navy;
+    font-weight: bold;
+}
+
+#retrieve-div {
+    display: none;
+}
+
+.error, .result {
+    width: 30%;
+    left: 40%;
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    display: none;
+    border-radius: 4px;
+}
+
+.error {
+    background-color: #FF4040;
+}
+
+.result {
+    background-color: green;
+}

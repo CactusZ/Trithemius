@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" ng-app>
+
+<head>
+  <title>Steganography Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="./client/index.html">
+
+  <link rel="stylesheet" href="/css/index.css">
+  <script src="/js/jquery.min.js"></script>
+  <script src='/js/jquery.transit.min.js'></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/angular.min.js"></script>
+  <script src="/js/script.js"></script>
+</head>
+
+<body>
+
+
+  <div class="container">
+    <div class="head-sub-container">
+      <div class="heading">
+        Steganography Project
+      </div>
+      <div class="description">
+        The purpose of this project is to implement steganography process: some object (or string) hiding in another object. <br> Possible object file types: any type. <br> Possible data carrier file types: wav. <br>
+      </div>
+    </div>
+    <div class="description sub-container error" id="error-div">
+      Error!
+    </div>
+    <div class="description sub-container result" id="result-div">
+      Result!
+    </div>
+    <div class="sub-container">
+      <select id="operation">
+        <option value="hide">Hide information in object</option>
+        <option value="retrieve">Retrieve information from object</option>
+      </select>
+    </div>
+    <div id="hide-div">
+      <div class="sub-container">
+        <div class="label-div">
+          <label for="object-type">Object type:</label>
+        </div>
+        <select id="object-type">
+          <option value="file">Hide file</option>
+          <option value="string">Hide string</option>
+        </select>
+      </div>
+      <div class="sub-container" id="upload-string">
+        <div class="label-div">
+          <label for="upload-obj-string">Object string:</label>
+        </div>
+        <input id="upload-obj-string" class="upload-string" type="text" placeholder="Enter string...">
+      </div>
+      <div class="sub-container" id="upload-file">
+        <div class="label-div">
+          <label for="upload-obj-file">Choose object file:</label>
+        </div>
+        <input id="upload-obj-input" type="file" name="upload-object" style="display:none;">
+        <input id="upload-obj-file" class="upload-file" type="text" placeholder="Click to select..." readonly>
+      </div>
+      <div class="sub-container">
+        <div class="label-div">
+          <label for="upload-carrier-file">Choose carrier file:</label>
+        </div>
+        <input id="upload-carrier-input" type="file" name="upload-carrier" style="display:none;">
+        <input id="upload-carrier-file" class="upload-file" type="text" placeholder="Click to select..." readonly>
+      </div>
+      <div class="btn-container">
+        <button id="upload-btn">Upload</button>
+      </div>
+    </div>
+  </div>
+  <div id="retrieve-div">
+    <div class="sub-container">
+      <div class="label-div">
+        <label for="object-retr-type">Object to retrieve type:</label>
+      </div>
+      <select id="object-retr-type">
+          <option value="file">File</option>
+          <option value="string">String</option>
+        </select>
+    </div>
+    <div class="sub-container">
+      <div class="label-div">
+        <label for="stego-file">Choose carrier file:</label>
+      </div>
+      <input id="stego-input" type="file" name="stego-file" style="display:none;">
+      <input id="stego-file" class="upload-file" type="text" placeholder="Click to select..." readonly>
+    </div>
+    <div class="btn-container">
+      <button id="retrieve-btn">Retrieve</button>
+    </div>
+  </div>
+  </div>
+  <div id="progress" class="progress-bar">
+    <div id="progressBar" class="progress-bar-box">10%</div>
+  </div>
+</body>
+
+</html>
