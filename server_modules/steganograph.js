@@ -102,9 +102,9 @@ router.post('/hide', function(req, res) {
     form.multiples = true;
 
     // store all uploads in the /uploads directory
-    form.uploadDir = path.join(__dirname, '/uploads');
+    form.uploadDir = path.join(__dirname, '../uploads');
 
-    var resDir = path.join(__dirname, '/results');
+    var resDir = path.join(__dirname, '../results');
     var fileCarrier;
     var fileObject;
     var carrierExt;
