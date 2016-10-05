@@ -69,7 +69,7 @@ router.post('/retrieve', function(req, res) {
 
         ls.stdout.on('data', (data) => {
             /*console.log(`stdout: ${data}`);*/
-            responseJSON["result"] = data;
+            responseJSON["result"] = `${data}`;
         });
 
         ls.stderr.on('data', (data) => {
