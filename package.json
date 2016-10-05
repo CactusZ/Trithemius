@@ -7,7 +7,7 @@
   "author": "CactusZ",
   "dependencies": {
     "path": "*",
-    "express": "~3.2.4",
+    "express": "~4.0.0",
     "formidable": "*",
     "fs": "*",
     "crypto": "*",
