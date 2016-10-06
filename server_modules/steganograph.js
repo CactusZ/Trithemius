@@ -68,7 +68,6 @@ router.post('/retrieve', function(req, res) {
         const ls = spawn('java', ['Java/src/steganography_tool/Steganography_Tool', 'Retrieve', objectType, fileCarrier, path.join(resDir, resName)]);
 
         ls.stdout.on('data', (data) => {
-            /*console.log(`stdout: ${data}`);*/
             responseJSON["result"] = `${data}`;
         });
 
@@ -156,6 +155,7 @@ router.post('/hide', function(req, res) {
             return;
         }
         var resName = crypto.createHash('md5').update(Math.random().toString()).digest('hex') + carrierExt;
+
         const ls = spawn('java', ['Java/src/steganography_tool/Steganography_Tool', 'Hide', objectType, object, fileCarrier, path.join(resDir, resName)]);
 
         ls.stdout.on('data', (data) => {

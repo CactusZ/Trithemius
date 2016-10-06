@@ -74,7 +74,7 @@ public class Steganography_Tool {
                     int choice2 = args[1].equals("string") ? 1 : 2;
                     
                     if (choice2 == 1) {
-                       System.out.println(stegoWav.decryptMessage(fileIn));
+                       System.out.print(stegoWav.decryptMessage(fileIn));
                     } else if (choice2 == 2) {
                         out = new FileOutputStream(args[3]);
                         stegoWav.decryptMessage(fileIn, out);
