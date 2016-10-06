@@ -80,10 +80,15 @@
         /* Button pressed. Upload! */
         $("#btn").click(function() {
             $("#result-div").fadeOut("fast");
-
+            
+            if (!$('#carrier-input').val()){
+                showErrOrRes("error", "You have to select carrier file!");
+                return;
+            }
+            
             var operation = $("#operation").val();
             var fileCar = $('#carrier-input').get(0).files[0];
-
+            
             var objectType = $("#object-type").val();
 
             /*Create Form*/
@@ -94,16 +99,16 @@
             /* If we hide info, append info to form */
             if (operation == 'hide') {
                 if (objectType == 'file') {
-                    if ((!$('#carrier-input').val()) || (!$('#object-input').val())) {
-                        showErrOrRes("error", "You have to select two files!");
+                    if (!$('#object-input').val()) {
+                        showErrOrRes("error", "You have to select object file!");
                         return;
                     }
                     var fileObj = $('#object-input').get(0).files[0];
                     formData.append('fileObject', fileObj, fileObj.name);
                 }
                 else {
-                    if ((!$('#carrier-input').val()) || (!$('#object-string').val())) {
-                        showErrOrRes("error", "You have to select a file and input string!");
+                    if (!$('#object-string').val()) {
+                        showErrOrRes("error", "You have to input a string!");
                         return;
                     }
                     formData.append('stringObject', $('#object-string').val());
