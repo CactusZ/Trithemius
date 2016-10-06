@@ -54,10 +54,6 @@ select {
     padding: 0 10px;
 }
 
-#upload-string {
-    display: none;
-}
-
 .upload-file:hover,
 button:hover,
 .upload-string:hover,
@@ -146,30 +142,27 @@ button {
     height: 100%;
     background-color: RoyalBlue;
     transition: width 0.1s;
-    text-align: center;
+    text-align: right;
     line-height: 30px;
     color: Navy;
     font-weight: bold;
-}
-
-#retrieve-div {
-    display: none;
 }
 
 .error, .result {
     width: 30%;
     left: 40%;
     color: black;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     display: none;
     border-radius: 4px;
+    border-width: 2px;
 }
 
 .error {
-    background-color: #FF4040;
+    border-color: #FF4040;
 }
 
 .result {
-    background-color: green;
+    border-color: green;
 }
