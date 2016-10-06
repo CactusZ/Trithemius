@@ -29,3 +29,6 @@ app.use('/getresult', fileController);
 app.use('/upload', steganograph);
 
 app.listen(process.env.PORT);
+
+console.log('Server IP:' + process.env.IP);
+console.log('     port:' + process.env.PORT);
