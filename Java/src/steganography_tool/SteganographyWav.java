@@ -99,15 +99,15 @@ public class SteganographyWav {
     public static String decryptMessage(WavFile file) {
         String message = new String("");
         try {
-            //open file
-
+            
             int channelCount = file.getNumChannels();
             long[] buffer = new long[bitsLength * channelCount];
+            
             //decrypting length
             file.readFrames(buffer, bitsLength);
             int messageLength = decryptBuffer(buffer, channelCount, bitsLength);
-
             buffer = new long[8 * channelCount];
+            
             for (int i = 0; i < messageLength; i++) {
                 file.readFrames(buffer, 8);
                 message += (char) decryptBuffer(buffer, channelCount, 8);
@@ -128,13 +128,12 @@ public class SteganographyWav {
             //decrypting length
             file.readFrames(buffer, bitsLength);
             messageLength = decryptBuffer(buffer, channelCount, bitsLength);
-            System.out.println(messageLength);
             buffer = new long[8 * channelCount];
+            
             int bytebuf;
             for (int i = 0; i < messageLength; i++) {
                 file.readFrames(buffer, 8);
                 bytebuf = decryptBuffer(buffer, channelCount, 8);
-                //        writer.write(bytebuf + "\n");
                 out.write(bytebuf);
 
             }

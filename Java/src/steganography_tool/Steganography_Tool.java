@@ -49,7 +49,9 @@ public class Steganography_Tool {
             WavFile fileOut = null;
             SteganographyWav stegoWav = new SteganographyWav();
             try {
-                if (choice == 1) {
+                
+                
+                if (choice == 1) { // Hide
                     fileIn = WavFile.openWavFile(new File(args[3]));
                     String fileOutName = new String(args[4]);
     
@@ -57,25 +59,26 @@ public class Steganography_Tool {
                     
                     int choice2 = args[1].equals("string") ? 1 : 2;
     
-                    if (choice2 == 1) {
+                    if (choice2 == 1) { //string
                         String message = new String(args[2]);
                         stegoWav.encryptMessage(message , fileIn, fileOut);
-                    } else if (choice2 == 2) {
+                    } else if (choice2 == 2) { //file
                         in = new FileInputStream(args[2]);
     
+                        // One bit is hidden in one frame, so filesize in bits must be > frame number 
                         if (in.getChannel().size() * 8 > fileIn.getNumFrames()) {
                             System.out.println("sorry, for this .wav file, maximum size is " + fileIn.getNumFrames() / 8);
                             return;
                         }
                         stegoWav.encryptMessage(in, fileIn, fileOut);
                     }
-                } else if (choice == 2) {
+                } else if (choice == 2) { //Retrieve
                     fileIn = WavFile.openWavFile(new File(args[2]));
                     int choice2 = args[1].equals("string") ? 1 : 2;
                     
-                    if (choice2 == 1) {
+                    if (choice2 == 1) { //string
                        System.out.print(stegoWav.decryptMessage(fileIn));
-                    } else if (choice2 == 2) {
+                    } else if (choice2 == 2) { //file
                         out = new FileOutputStream(args[3]);
                         stegoWav.decryptMessage(fileIn, out);
                     }

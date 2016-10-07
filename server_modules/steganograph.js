@@ -23,9 +23,9 @@ router.post('/retrieve', function(req, res) {
     form.multiples = false;
 
     // store all uploads in the /uploads directory
-    form.uploadDir = path.join(__dirname, '../uploads');
+    form.uploadDir = path.resolve('./uploads');
 
-    var resDir = path.join(__dirname, '../results');
+    var resDir = path.resolve('./results');
     var fileCarrier;
 
     // every time a file has been uploaded successfully,
@@ -101,9 +101,9 @@ router.post('/hide', function(req, res) {
     form.multiples = true;
 
     // store all uploads in the /uploads directory
-    form.uploadDir = path.join(__dirname, '../uploads');
+    form.uploadDir = path.resolve('./uploads');
 
-    var resDir = path.join(__dirname, '../results');
+    var resDir = path.resolve('./results');
     var fileCarrier;
     var fileObject;
     var carrierExt;
