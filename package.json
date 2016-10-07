@@ -11,6 +11,7 @@
     "formidable": "*",
     "fs": "*",
     "crypto": "*",
-    "child_process":"*"
+    "child_process":"*",
+    "body-parser": "*"
   }
 }
