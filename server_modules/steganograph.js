@@ -31,7 +31,7 @@ router.post('/retrieve', function(req, res) {
     // every time a file has been uploaded successfully,
     // rename it to it's random hashed name
     form.on('file', function(field, file) {
-        console.log('form field_TYPE=FILE field= ' + field + ' filename=' + file.name);
+        console.log('form field_TYPE= FILE field= ' + field);
         var ext = '.' + file.name.split('.').pop();
         fileCarrier = crypto.createHash('md5').update(Math.random().toString()).digest('hex');
         fileCarrier = path.join(form.uploadDir, fileCarrier + ext);
@@ -39,7 +39,7 @@ router.post('/retrieve', function(req, res) {
     });
 
     form.on('field', function(field, data) {
-        console.log('form field_TYPE=FIELD field= ' + field + ' data=' + data);
+        console.log('form field_TYPE=FIELD field= ' + field);
         if (field == "objectType") {
             objectType = data;
         }
@@ -64,9 +64,9 @@ router.post('/retrieve', function(req, res) {
         }
         var resExt = objectType == "file" ? ".file" : ".txt";
         var resName = crypto.createHash('md5').update(Math.random().toString()).digest('hex') + resExt;
-        console.log("Retrieve " + objectType + " " + fileCarrier + " " + path.join(resDir, resName));
         const ls = spawn('java', ['Java/src/steganography_tool/Steganography_Tool', 'Retrieve', objectType, fileCarrier, path.join(resDir, resName)]);
-
+        
+        console.log('java process started');
         ls.stdout.on('data', (data) => {
             responseJSON["result"] = `${data}`;
         });
@@ -82,6 +82,7 @@ router.post('/retrieve', function(req, res) {
             if (objectType == 'file') responseJSON["result"] = resName;
             res.json(responseJSON);
             res.end('success');
+            console.log('java process ended');
         });
 
 
@@ -110,7 +111,7 @@ router.post('/hide', function(req, res) {
     // every time a file has been uploaded successfully,
     // rename it to it's orignal name
     form.on('file', function(field, file) {
-        console.log('form field_TYPE=FILE field= ' + field + ' filename=' + file.name);
+        console.log('form field_TYPE= FILE field= ' + field);
         var ext = '.' + file.name.split('.').pop();
         if (field == "fileObject") {
             fileObject = crypto.createHash('md5').update(Math.random().toString()).digest('hex');
@@ -128,7 +129,7 @@ router.post('/hide', function(req, res) {
     });
 
     form.on('field', function(field, data) {
-        console.log('form field_TYPE=FIELD field= ' + field + ' data=' + data);
+        console.log('form field_TYPE=FIELD field= ' + field);
         if (field == "stringObject") {
             object = data;
         }

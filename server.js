@@ -19,6 +19,12 @@ var app = express();
 
 app.use(express.static(__dirname + '/client'));
 
+
+app.all('*',function(req, res, next) {
+    console.log('received ' + req.method + '  request from IP' + req.ip + '; URL' + req.originalUrl);
+    next();
+});
+
 app.get('/', function(req, res) {
     res.sendfile('index.html', {
         root: './client'

@@ -13,6 +13,7 @@ router.get(['/*.wav', '/*.file'], function(req, res) {
             return;
         }
         res.status(404);
+        console.log('Requested file not found!');
         res.send("Not found!");
     });
 });
