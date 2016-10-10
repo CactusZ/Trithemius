@@ -73,6 +73,11 @@ router.post('/retrieve', function(req, res) {
 
         ls.stderr.on('data', (data) => {
             console.log(`stderr: ${data}`);
+            responseJSON["status"] = "error";
+            responseJSON["error-id"] = 2;
+            responseJSON["error"] = 'Processing error. Check files';
+            res.json(responseJSON);
+            res.end('success');
         });
 
 
@@ -84,13 +89,13 @@ router.post('/retrieve', function(req, res) {
                     console.log("error deleting file carrier!");
                 }
             });
-            
+
             responseJSON["status"] = "success";
             responseJSON["error-id"] = 0;
             if (objectType == 'file') responseJSON["result"] = resName;
             res.json(responseJSON);
             res.end('success');
-            
+
         });
 
 
@@ -173,12 +178,17 @@ router.post('/hide', function(req, res) {
 
         ls.stderr.on('data', (data) => {
             console.log(`stderr: ${data}`);
+            responseJSON["status"] = "error";
+            responseJSON["error-id"] = 2;
+            responseJSON["error"] = 'Processing error. Check files';
+            res.json(responseJSON);
+            res.end('success');
         });
 
 
         ls.on('close', (code) => {
             console.log('java process ended');
-            
+
             /*remove uploaded files*/
             fs.unlink(fileCarrier, (err) => {
                 if (err) {
