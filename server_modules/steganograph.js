@@ -7,8 +7,8 @@ var router = express.Router();
 const spawn = require('child_process').spawn;
 
 router.use(function timeLog(req, res, next) {
-  console.log('Time: ', Date.now());
-  next();
+    console.log('Time: ', Date.now());
+    next();
 });
 
 router.post('/retrieve', function(req, res) {
@@ -65,7 +65,7 @@ router.post('/retrieve', function(req, res) {
         var resExt = objectType == "file" ? ".file" : ".txt";
         var resName = crypto.createHash('md5').update(Math.random().toString()).digest('hex') + resExt;
         const ls = spawn('java', ['Java/src/steganography_tool/Steganography_Tool', 'Retrieve', objectType, fileCarrier, path.join(resDir, resName)]);
-        
+
         console.log('java process started');
         ls.stdout.on('data', (data) => {
             responseJSON["result"] = `${data}`;
@@ -77,12 +77,20 @@ router.post('/retrieve', function(req, res) {
 
 
         ls.on('close', (code) => {
+            console.log('java process ended');
+            /*remove uploaded files*/
+            fs.unlink(fileCarrier, (err) => {
+                if (err) {
+                    console.log("error deleting file carrier!");
+                }
+            });
+            
             responseJSON["status"] = "success";
             responseJSON["error-id"] = 0;
             if (objectType == 'file') responseJSON["result"] = resName;
             res.json(responseJSON);
             res.end('success');
-            console.log('java process ended');
+            
         });
 
 
@@ -169,6 +177,22 @@ router.post('/hide', function(req, res) {
 
 
         ls.on('close', (code) => {
+            console.log('java process ended');
+            
+            /*remove uploaded files*/
+            fs.unlink(fileCarrier, (err) => {
+                if (err) {
+                    console.log("error deleting file carrier!");
+                }
+            });
+            if (objectType == 'file') {
+                fs.unlink(object, (err) => {
+                    if (err) {
+                        console.log("error deleting object file!");
+                    }
+                });
+            }
+
             responseJSON["status"] = "success";
             responseJSON["error-id"] = 0;
             responseJSON["result"] = resName;
