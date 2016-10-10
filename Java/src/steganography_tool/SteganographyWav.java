@@ -60,7 +60,7 @@ public class SteganographyWav {
 
             //encrypting message length
             int messageLength = (int) messageFile.getChannel().size();
-            System.out.println(messageLength);
+            
             fileIn.readFrames(buffer, bitsLength);
             encryptBuffer(buffer, messageLength, numChannels, bitsLength);
             fileOut.writeFrames(buffer, bitsLength);
