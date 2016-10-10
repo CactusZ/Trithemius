@@ -28,7 +28,14 @@ app.get('/', function(req, res) {
 app.use('/getresult', fileController);
 app.use('/upload', steganograph);
 
+/* 404 Error */
+app.use(function(req, res) {
+    res.status(404);
+    res.send("Not found!");
+});
+
 app.listen(process.env.PORT);
 
-console.log('Server IP:' + process.env.IP);
-console.log('     port:' + process.env.PORT);
+console.log('   Server IP:' + process.env.IP);
+console.log('        port:' + process.env.PORT);
+console.log('Node version:' + process.version);
