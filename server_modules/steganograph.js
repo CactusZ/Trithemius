@@ -62,13 +62,19 @@ router.post('/retrieve', function(req, res) {
             res.end('success');
             return;
         }
+
+        /* init as success. Will be changed if error appears*/
+        responseJSON["status"] = "success";
+        responseJSON["error-id"] = 0;
+        responseJSON["result"] = "";
+
         var resExt = objectType == "file" ? ".file" : ".txt";
         var resName = crypto.createHash('md5').update(Math.random().toString()).digest('hex') + resExt;
         const ls = spawn('java', ['Java/src/steganography_tool/Steganography_Tool', 'Retrieve', objectType, fileCarrier, path.join(resDir, resName)]);
 
         console.log('java process started');
         ls.stdout.on('data', (data) => {
-            responseJSON["result"] = `${data}`;
+            responseJSON["result"] += `${data}`;
         });
 
         ls.stderr.on('data', (data) => {
@@ -76,8 +82,6 @@ router.post('/retrieve', function(req, res) {
             responseJSON["status"] = "error";
             responseJSON["error-id"] = 2;
             responseJSON["error"] = 'Processing error. Check files';
-            res.json(responseJSON);
-            res.end('success');
         });
 
 
@@ -90,9 +94,13 @@ router.post('/retrieve', function(req, res) {
                 }
             });
 
-            responseJSON["status"] = "success";
-            responseJSON["error-id"] = 0;
-            if (objectType == 'file') responseJSON["result"] = resName;
+            if ((objectType == 'file') && (responseJSON["status"] == 'success')) {
+                responseJSON["result"] = resName;
+                /* Delete result file after 2 hours */
+                setTimeout(() => {
+                    fs.unlink(path.resolve('./results/' + resName));
+                }, 7.2e6);
+            }
             res.json(responseJSON);
             res.end('success');
 
@@ -168,6 +176,11 @@ router.post('/hide', function(req, res) {
             res.end('success');
             return;
         }
+
+        /* init as success. change if error */
+        responseJSON["status"] = "success";
+        responseJSON["error-id"] = 0;
+
         var resName = crypto.createHash('md5').update(Math.random().toString()).digest('hex') + carrierExt;
 
         const ls = spawn('java', ['Java/src/steganography_tool/Steganography_Tool', 'Hide', objectType, object, fileCarrier, path.join(resDir, resName)]);
@@ -181,8 +194,6 @@ router.post('/hide', function(req, res) {
             responseJSON["status"] = "error";
             responseJSON["error-id"] = 2;
             responseJSON["error"] = 'Processing error. Check files';
-            res.json(responseJSON);
-            res.end('success');
         });
 
 
@@ -203,9 +214,14 @@ router.post('/hide', function(req, res) {
                 });
             }
 
-            responseJSON["status"] = "success";
-            responseJSON["error-id"] = 0;
-            responseJSON["result"] = resName;
+
+            if (responseJSON["status"] == 'success') {
+                responseJSON["result"] = resName;
+                setTimeout(() => {
+                    fs.unlink(path.resolve('./results/' + resName));
+                }, 7.2e6);
+
+            }
             res.json(responseJSON);
             res.end('success');
         });
