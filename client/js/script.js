@@ -135,7 +135,7 @@
                     }
                     else {
                         if ((operation=="hide") || (objectType=="file")) {
-                            showErrOrRes("result", "Download your file <a href=/getresult/" + data.result + "> HERE </a>");
+                            showErrOrRes("result", "Download your file <a href=/getresult/" + data.result + "> HERE </a> <br> Link will be available for 2 hours");
                         } else {
                             showErrOrRes("result", "Result string: " + data.result);
                         }
@@ -153,7 +153,7 @@
                         if (evt.lengthComputable) {
                             // calculate the percentage of upload completed
                             var percentComplete = evt.loaded / evt.total;
-                            percentComplete = parseInt(percentComplete * 100);
+                            percentComplete = parseInt(percentComplete * 100, 10);
 
                             // update the Bootstrap progress bar with the new percentage
                             $('.progress-bar-box').text(percentComplete + '%');
