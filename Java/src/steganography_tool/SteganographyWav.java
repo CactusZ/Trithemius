@@ -79,7 +79,6 @@ public class SteganographyWav {
                 if (i < messageLength) {
                     bytebuf = messageFile.read();
                     encryptBuffer(buffer, bytebuf, numChannels, 8);
-                    //           writer.write(bytebuf + "\n");
                     i++;
                 }
                 fileOut.writeFrames(buffer, 8);
