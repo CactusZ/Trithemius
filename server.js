@@ -15,6 +15,11 @@ var fileController = require('./server_modules/fileController');
 // Creates a new instance of SimpleServer with the following options:
 //  * `port` - The HTTP port to listen on. If `process.env.PORT` is set, _it overrides this value_.
 //
+
+const exec = require('child_process').exec;
+const proc  = exec('rm ./results/*');
+const proc2 = exec('rm ./uploads/*');
+
 var app = express();
 
 app.use(express.static(__dirname + '/client'));
