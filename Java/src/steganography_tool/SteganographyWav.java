@@ -9,7 +9,11 @@ public class SteganographyWav {
     public static void encryptBuffer(long[] buffer, int x, int channelCount, int bitsLength) {
 
         for (int i = 0; i < bitsLength * channelCount; i += channelCount) {
-            buffer[i] = ((buffer[i] >> 1) << 1) ^ (x % 2);
+            /* encrypt info in both channels */
+            for (int j = 0;j < channelCount; j++){
+                buffer[i+j] = ((buffer[i+j] >> 1) << 1) ^ (x % 2);
+            }
+            
             x = x >> 1;
         }
     }
@@ -89,6 +93,7 @@ public class SteganographyWav {
     public static int decryptBuffer(long[] buffer, int channelCount, int bitsLength) {
         int res = 0;
         int power2 = 1;
+        /* decrypt info from 1st channel. Info in other channels is similar */
         for (int i = 0; i < bitsLength * channelCount; i += channelCount) {
             res = (res) + ((int) (buffer[i] % 2) & 1) * (power2);
             power2 = power2 << 1;

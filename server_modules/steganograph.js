@@ -127,7 +127,7 @@ router.post('*',function(req,res,next){
 
 
             if (responseJSON["status"] == 'success') {
-                if ((objectType == 'file')&&(req.path=='/hide')) {
+                if ((objectType == 'file')||(req.path=='/hide')) {
                     responseJSON["result"] = resName;
                     setTimeout(() => {
                         fs.unlink(path.resolve('./results/' + resName));
