@@ -67,7 +67,7 @@ public class Steganography_Tool {
     
                         // One bit is hidden in one frame, so filesize in bits must be > frame number 
                         if (in.getChannel().size() * 8 > fileIn.getNumFrames()) {
-                            System.out.println("sorry, for this .wav file, maximum size is " + fileIn.getNumFrames() / 8);
+                            System.err.println(fileIn.getNumFrames() / 8);
                             return;
                         }
                         stegoWav.encryptMessage(in, fileIn, fileOut);

@@ -12,7 +12,7 @@ router.use(function timeLog(req, res, next) {
 });
 
 
-router.post('*',function(req,res,next){
+router.post('*', function(req, res, next) {
 
     var objectType;
     var object;
@@ -30,7 +30,7 @@ router.post('*',function(req,res,next){
     var fileCarrier;
     var fileObject;
     var carrierExt;
-    
+
     // every time a file has been uploaded successfully,
     // rename it to it's orignal name
     form.on('file', function(field, file) {
@@ -40,12 +40,14 @@ router.post('*',function(req,res,next){
             fileObject = crypto.createHash('md5').update(Math.random().toString()).digest('hex');
             fs.rename(file.path, path.join(form.uploadDir, fileObject + ext));
             object = path.join(form.uploadDir, fileObject + ext);
-        } else if (field == "fileCarrier") {
+        }
+        else if (field == "fileCarrier") {
             carrierExt = ext;
             fileCarrier = crypto.createHash('md5').update(Math.random().toString()).digest('hex');
             fileCarrier = path.join(form.uploadDir, fileCarrier + ext);
             fs.rename(file.path, fileCarrier);
-        } else { // Delete file 
+        }
+        else { // Delete file 
             fs.unlink(file.path);
         }
 
@@ -83,28 +85,33 @@ router.post('*',function(req,res,next){
         responseJSON["status"] = "success";
         responseJSON["error-id"] = 0;
         responseJSON["result"] = "";
-        
+
         // result file extension 
         var resExt = (req.path == '/hide') ? carrierExt : (objectType == "file" ? ".file" : ".txt");
 
         var resName = crypto.createHash('md5').update(Math.random().toString()).digest('hex') + resExt;
 
-        var javaParams = (req.path == '/hide') ?
-                        ['Java/src/steganography_tool/Steganography_Tool', 'Hide', objectType, object, fileCarrier, path.join(resDir, resName)] :
-                        ['Java/src/steganography_tool/Steganography_Tool', 'Retrieve', objectType, fileCarrier, path.join(resDir, resName)];
+        var javaParams = (req.path == '/hide') ? ['Java/src/steganography_tool/Steganography_Tool', 'Hide', objectType, object, fileCarrier, path.join(resDir, resName)] : ['Java/src/steganography_tool/Steganography_Tool', 'Retrieve', objectType, fileCarrier, path.join(resDir, resName)];
         const ls = spawn('java', javaParams);
-        
+
         ls.stdout.on('data', (data) => {
             if (req.path == '/retrieve') {
-                responseJSON["result"]+=`${data}`;
+                responseJSON["result"] += `${data}`;
             }
         });
 
         ls.stderr.on('data', (data) => {
             console.log(`stderr: ${data}`);
-            responseJSON["status"] = "error";
-            responseJSON["error-id"] = 2;
-            responseJSON["error"] = 'Processing error. Check files';
+            if (isNaN(`${data}`)) {
+                responseJSON["status"] = "error";
+                responseJSON["error-id"] = 2;
+                responseJSON["error"] = 'Processing error. Check files';
+            } else {
+                responseJSON["status"] = "error";
+                responseJSON["error-id"] = 3;
+                responseJSON["error"] = 'Object to hide is too large. <br> Maximum size: ' +`${data} bytes`;
+            }
+
         });
 
 
@@ -117,7 +124,7 @@ router.post('*',function(req,res,next){
                     console.log("error deleting file carrier!");
                 }
             });
-            if ((objectType == 'file')&&(req.path=='/hide')) {
+            if ((objectType == 'file') && (req.path == '/hide')) {
                 fs.unlink(object, (err) => {
                     if (err) {
                         console.log("error deleting object file!");
@@ -127,7 +134,7 @@ router.post('*',function(req,res,next){
 
 
             if (responseJSON["status"] == 'success') {
-                if ((objectType == 'file')||(req.path=='/hide')) {
+                if ((objectType == 'file') || (req.path == '/hide')) {
                     responseJSON["result"] = resName;
                     setTimeout(() => {
                         fs.unlink(path.resolve('./results/' + resName));
