@@ -10,6 +10,17 @@
     }
 
     $(document).ready(function() {
+        // When the user clicks on the button, open the modal 
+        $("a").click(function() {
+            $("#modal-div").show();
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        $(".close").click(function() {
+            $("#modal-div").hide();
+        });
+
+
 
         $("#operation").change(function() {
             $(".progress-bar").hide("fast");
@@ -60,14 +71,14 @@
             var new_id = this_id.substring(0, this_id.indexOf('-')) + "-input";
             $("#" + new_id).click();
         });
-        
+
         $('.file-input').change(function() {
             var this_id = $(this).attr('id');
             var new_id = this_id.substring(0, this_id.indexOf('-')) + "-file";
-            
+
             var filename = $(this).val().split('\\').pop();
-            var object_file = $('#'+new_id);
-            
+            var object_file = $('#' + new_id);
+
             $(object_file).val(!filename ? "" : filename + " [Click to change]");
             if (!object_file.val()) {
                 object_file.css("background-color", "");
@@ -80,15 +91,15 @@
         /* Button pressed. Upload! */
         $("#btn").click(function() {
             $("#result-div").fadeOut("fast");
-            
-            if (!$('#carrier-input').val()){
+
+            if (!$('#carrier-input').val()) {
                 showErrOrRes("error", "You have to select carrier file!");
                 return;
             }
-            
+
             var operation = $("#operation").val();
             var fileCar = $('#carrier-input').get(0).files[0];
-            
+
             var objectType = $("#object-type").val();
 
             /*Create Form*/
@@ -114,7 +125,7 @@
                     formData.append('stringObject', $('#object-string').val());
                 }
             }
-            
+
             /* Hide button */
             $(this).fadeOut("fast", function() {
                 /* Reset and show progress bar */
@@ -134,9 +145,10 @@
                         showErrOrRes("error", data.error);
                     }
                     else {
-                        if ((operation=="hide") || (objectType=="file")) {
+                        if ((operation == "hide") || (objectType == "file")) {
                             showErrOrRes("result", "Download your file <a href=/getresult/" + data.result + "> HERE </a> <br> Link will be available for 2 hours");
-                        } else {
+                        }
+                        else {
                             showErrOrRes("result", "Result string: " + data.result);
                         }
                     }
@@ -174,8 +186,12 @@
                 }
             });
         });
-        
-        
+
+
         /* Init page */
         $("#object-string-div").hide();
+        $("#result-div").hide();
+        $("#modal-div").hide();
+
+
     });

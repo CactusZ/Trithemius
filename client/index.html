@@ -7,6 +7,7 @@
   <base href="./client/index.html">
 
   <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
   <script src="/js/jquery.min.js"></script>
   <script src='/js/jquery.transit.min.js'></script>
   <script src="/js/bootstrap.min.js"></script>
@@ -23,38 +24,52 @@
         Trithemius
       </div>
       <div class="description">
-        The purpose of this project is to implement steganography process:<br>
+        <a href="">Where am I?</a>
+      </div>
+    </div>
+
+    <div id="modal-div" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <i class="fa fa-close close"></i>
+        <p> The purpose of this project is to implement steganography process:<br>
         some object (or string) hiding in another object.<br>
         Possible object file types: any type. <br>
         Possible data carrier file types: wav. <br>
-        Warning! Only latin letters allowed!
+        Warning! Only latin letters allowed!</p>
       </div>
+
     </div>
     
     <div class="description sub-container error" id="result-div">
       Error!
     </div>
-    
-    <div class="sub-container">
-      <select id="operation">
+
+
+
+    <div id="form-div">
+      <div class="sub-container">
+        <select id="operation">
         <option value="hide">Hide information in object</option>
         <option value="retrieve">Retrieve information from object</option>
       </select>
-    </div>
-
-    <div id="form-div">
-
+      </div>
       <div class="sub-container">
-        <div class="label-div">
-          <label for="carrier-file">Choose carrier file:</label>
-        </div>
+        <div class="label-div tooltip">
+          <label for="carrier-file" class="dotted">Carrier file:</label>
+          <span class="tooltiptext">Where you hide</span>
+        </div
+  
         <input id="carrier-input" type="file" class="file-input" name="carrier" style="display:none;">
         <input id="carrier-file" class="upload-file" type="text" placeholder="Click to select..." readonly>
+        
       </div>
 
       <div class="sub-container">
-        <div class="label-div">
-          <label for="object-type">Object type:</label>
+        <div class="label-div tooltip">
+          <label for="object-type" class="dotted">Object type:</label>
+          <span class="tooltiptext">What you hide</span>
         </div>
         <select id="object-type">
           <option value="file">Hide file</option>
@@ -71,7 +86,7 @@
 
       <div class="sub-container object" id="object-file-div">
         <div class="label-div">
-          <label for="object-file">Choose object file:</label>
+          <label for="object-file">Object file:</label>
         </div>
         <input id="object-input" type="file" class="file-input" name="upload-object" style="display:none;">
         <input id="object-file" class="upload-file" type="text" placeholder="Click to select..." readonly>
