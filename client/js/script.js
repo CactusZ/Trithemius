@@ -157,8 +157,8 @@
                             showErrOrRes("result", "Result string: " + data.result);
                         }
                     }
+                    $("#loading-icon").hide();
                     $("#btn").fadeIn();
-                    $("#progress").fadeOut();
                 },
                 xhr: function() {
                     // create an XMLHttpRequest
@@ -181,6 +181,8 @@
                             // once the upload reaches 100%, set the progress bar text to done
                             if (percentComplete === 100) {
                                 $('.progress-bar-box').html('Done');
+                                $('#progress').hide();
+                                $("#loading-icon").show();
                             }
 
                         }
@@ -197,6 +199,6 @@
         $("#object-string-div").hide();
         $("#result-div").hide();
         $("#modal-div").hide();
-
+        $("#loading-icon").hide();
 
     });

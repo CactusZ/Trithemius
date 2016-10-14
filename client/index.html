@@ -10,9 +10,11 @@
   <link rel="stylesheet" href="/css/tooltips.css">
   <link rel="stylesheet" href="/css/progressbar.css">
   <link rel="stylesheet" href="/css/modal.css">
+  <link rel="stylesheet" href="/css/loader.css">
+  <link rel="stylesheet" href="/css/error.css">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-  
+
   <script src="/js/jquery.min.js"></script>
   <script src='/js/jquery.transit.min.js'></script>
   <script src="/js/bootstrap.min.js"></script>
@@ -49,16 +51,16 @@
           <p> Warning! Only latin letters allowed!</p>
         </div>
       </div>
-
     </div>
-
-    <div class="description sub-container error" id="result-div">
-      Error!
+    
+    <div class="error-sub-container">
+      <div class="description sub-container error" id="result-div">
+        Error!
+      </div>
     </div>
-
-
-
+    
     <div id="form-div">
+
       <div class="sub-container">
         <select id="operation">
         <option value="hide">Hide information in object</option>
@@ -70,7 +72,7 @@
           <div class="label-subdiv">
             <label for="carrier-file" class="dotted">Carrier file:</label>
           </div>
-          <span class="tooltiptext">Where you hide</span>
+          <span class="tooltiptext" id="carrier-tooltip">Where you hide</span>
         </div> <input id="carrier-input" type="file" accept=".wav" class="file-input" name="carrier" style="display:none;">
         <input id="carrier-file" class="upload-file" type="text" placeholder="Click to select..." readonly>
 
@@ -81,7 +83,7 @@
           <div class="label-subdiv">
             <label for="object-type" class="dotted">Object type:</label>
           </div>
-          <span class="tooltiptext">What you hide</span>
+          <span class="tooltiptext" id="object-tooltip">What you hide</span>
         </div>
         <select id="object-type">
           <option value="file">Hide file</option>
@@ -115,6 +117,7 @@
     <div id="progress" class="progress-bar">
       <div id="progressBar" class="progress-bar-box">10%</div>
     </div>
+    <div id="loading-icon" class="loader"></div>
   </div>
 
 </body>
