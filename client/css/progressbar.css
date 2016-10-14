@@ -1,0 +1,29 @@
+.progress-label {
+    text-align: center;
+    line-height: 30px;
+    color: Navy;
+    font-weight: bold;
+}
+
+.progress-bar {
+    position: relative;
+    width: 50%;
+    margin: auto;
+    height: 30px;
+    background-color: white;
+    border: solid blue 3px;
+    border-radius: 4px;
+    display: none;
+}
+
+.progress-bar-box {
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    background-color: RoyalBlue;
+    transition: width 0.1s;
+    text-align: right;
+    line-height: 30px;
+    color: Navy;
+    font-weight: bold;
+}

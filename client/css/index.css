@@ -33,41 +33,6 @@
     white-space: nowrap;
 }
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 5px;
-    border-radius: 6px;
-    border-bottom: dotted black 1px;
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    right: 0;
-    bottom: 100%;
-    opacity: 0;
-    transition: opacity 1s;
-}
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: black transparent transparent transparent;
-}
-
-
-/* Show the tooltip text when you mouse over the tooltip container */
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
-
 label,
 button {
     font-family: Arial, Helvetica, sans-serif;
@@ -168,36 +133,6 @@ button {
     margin-bottom: 2%;
 }
 
-.progress-label {
-    text-align: center;
-    line-height: 30px;
-    color: Navy;
-    font-weight: bold;
-}
-
-.progress-bar {
-    position: relative;
-    width: 50%;
-    margin: auto;
-    height: 30px;
-    background-color: white;
-    border: solid blue 3px;
-    border-radius: 4px;
-    display: none;
-}
-
-.progress-bar-box {
-    position: absolute;
-    width: 10%;
-    height: 100%;
-    background-color: RoyalBlue;
-    transition: width 0.1s;
-    text-align: right;
-    line-height: 30px;
-    color: Navy;
-    font-weight: bold;
-}
-
 .error,
 .result {
     width: 30%;
@@ -216,67 +151,4 @@ button {
 
 .result {
     border-color: green;
-}
-
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0%;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.modal-header {
-    padding: 2px 16px;
-    background-color: RoyalBlue;
-    color: white;
-}
-
-/* Modal Body */
-.modal-body {padding: 2px 16px;}
-
-/* Modal Content */
-.modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    top:40%;
-    border: 1px solid #888;
-    width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top: -100%; opacity: 0} 
-    to {top: 40%; opacity: 1}
-}
-
-@keyframes animatetop {
-    from {top: -100%; opacity: 0}
-    to {top: 40%; opacity: 1}
-}
-
-/* The Close Icon */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 24px;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    cursor: pointer;
 }
