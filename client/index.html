@@ -32,16 +32,21 @@
 
       <!-- Modal content -->
       <div class="modal-content">
-        <i class="fa fa-close close"></i>
-        <p> The purpose of this project is to implement steganography process:<br>
-        some object (or string) hiding in another object.<br>
-        Possible object file types: any type. <br>
-        Possible data carrier file types: wav. <br>
-        Warning! Only latin letters allowed!</p>
+        <div class="modal-header">
+          <span class="close">
+            <i class="fa fa-close"></i>
+          </span>
+          <h1>So what is Trithemius?</h1>
+        </div>
+        <div class="modal-body">
+          <p> The purpose of this project is to implement steganography process:<br> some object (or string) hiding in another object.</p>
+          <p> Possible object file types: any type. <br> Possible data carrier file types: wav. </p>
+          <p> Warning! Only latin letters allowed!</p>
+        </div>
       </div>
 
     </div>
-    
+
     <div class="description sub-container error" id="result-div">
       Error!
     </div>
@@ -57,18 +62,20 @@
       </div>
       <div class="sub-container">
         <div class="label-div tooltip">
-          <label for="carrier-file" class="dotted">Carrier file:</label>
+          <div class="label-subdiv">
+            <label for="carrier-file" class="dotted">Carrier file:</label>
+          </div>
           <span class="tooltiptext">Where you hide</span>
-        </div
-  
-        <input id="carrier-input" type="file" class="file-input" name="carrier" style="display:none;">
+        </div> <input id="carrier-input" type="file" accept=".wav" class="file-input" name="carrier" style="display:none;">
         <input id="carrier-file" class="upload-file" type="text" placeholder="Click to select..." readonly>
-        
+
       </div>
 
       <div class="sub-container">
         <div class="label-div tooltip">
-          <label for="object-type" class="dotted">Object type:</label>
+          <div class="label-subdiv">
+            <label for="object-type" class="dotted">Object type:</label>
+          </div>
           <span class="tooltiptext">What you hide</span>
         </div>
         <select id="object-type">
@@ -79,14 +86,18 @@
 
       <div class="sub-container object" id="object-string-div">
         <div class="label-div">
-          <label for="object-string">Object string:</label>
+          <div class="label-subdiv">
+            <label for="object-string">Object string:</label>
+          </div>
         </div>
         <input id="object-string" class="upload-string" type="text" placeholder="Enter string...">
       </div>
 
       <div class="sub-container object" id="object-file-div">
         <div class="label-div">
-          <label for="object-file">Object file:</label>
+          <div class="label-subdiv">
+            <label for="object-file">Object file:</label>
+          </div>
         </div>
         <input id="object-input" type="file" class="file-input" name="upload-object" style="display:none;">
         <input id="object-file" class="upload-file" type="text" placeholder="Click to select..." readonly>

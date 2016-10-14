@@ -10,7 +10,7 @@
     }
 
     $(document).ready(function() {
-        // When the user clicks on the button, open the modal 
+        // When the user clicks on the text, open the modal 
         $("a").click(function() {
             $("#modal-div").show();
         });
@@ -20,7 +20,12 @@
             $("#modal-div").hide();
         });
 
-
+        $("body").click(function(e){
+            var target= $(e.target);
+            if (target.is("#modal-div")){
+                $("#modal-div").hide();
+            }
+        });
 
         $("#operation").change(function() {
             $(".progress-bar").hide("fast");

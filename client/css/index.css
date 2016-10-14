@@ -21,13 +21,16 @@
     text-align: right;
     width: 28%;
     padding: 5px 0;
-    /*overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;*/
 }
 
 .label-div .dotted{
     border-bottom: dotted blue 1px;
+}
+
+.label-subdiv {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .tooltip .tooltiptext {
@@ -129,7 +132,8 @@ select:hover {
 }
 
 .btn-container {
-    margin: 2% auto;
+    margin: 4% auto;
+    width: 10%;
 }
 
 button {
@@ -144,8 +148,6 @@ button {
     -webkit-transition: background-color 0.5s;
     /* Safari */
     transition: background-color 0.5s;
-    margin-top: 2%;
-    left: 45%;
 }
 
 .heading,
@@ -227,9 +229,17 @@ button {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: RoyalBlue;
+    color: white;
+}
+
+/* Modal Body */
+.modal-body {padding: 2px 16px;}
 
 /* Modal Content */
 .modal-content {
@@ -237,7 +247,7 @@ button {
     background-color: #fefefe;
     margin: auto;
     padding: 0;
-    top:50%;
+    top:40%;
     border: 1px solid #888;
     width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -249,26 +259,24 @@ button {
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-    from {top: -300px; opacity: 0} 
-    to {top: 50%; opacity: 1}
+    from {top: -100%; opacity: 0} 
+    to {top: 40%; opacity: 1}
 }
 
 @keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 50%; opacity: 1}
+    from {top: -100%; opacity: 0}
+    to {top: 40%; opacity: 1}
 }
 
-/* The Close Button */
+/* The Close Icon */
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 24px;
 }
 
 .close:hover,
 .close:focus {
     color: black;
-    text-decoration: none;
     cursor: pointer;
 }
