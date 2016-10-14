@@ -35,12 +35,15 @@
 
                 $("#object-type option[value='file']").html("Hide file");
                 $("#object-type option[value='string']").html("Hide string");
+                $("#object-tooltip").html("What you hide");
+                $("#carrier-tooltip").html("Where you hide");
                 $("#btn").html("Hide");
                 $("#object-type").trigger("change");
 
             }
             else {
-
+                $("#object-tooltip").html("What you retrieve");
+                $("#carrier-tooltip").html("Where info is hidden");
                 $("#object-type option[value='file']").html("Retrieve file");
                 $("#object-type option[value='string']").html("Retrieve string");
                 $(".object").fadeOut();

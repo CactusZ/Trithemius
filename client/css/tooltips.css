@@ -11,7 +11,7 @@
     right: 0;
     bottom: 100%;
     opacity: 0;
-    transition: opacity 1s;
+    transition: opacity 0.4s;
 }
 
 .tooltip .tooltiptext::after {
