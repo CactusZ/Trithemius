@@ -13,5 +13,8 @@
     "crypto": "*",
     "child_process":"*",
     "body-parser": "*"
+  },
+  "scripts" :
+  { "start" : "node server.js"
   }
 }
